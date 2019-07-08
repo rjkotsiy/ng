@@ -8,20 +8,28 @@ interface Point {
 }
 
 class MyPoint {
-    x: number;
-    y: number;
 
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
+    constructor(private _x: number, private _y: number) {
     }
 
     draw() {
-        console.log('x:' + this.x + ' y: ' + this.y);
+        console.log('x:' + this._x + ' y: ' + this._y);
     }
+
+    get x() {
+        return this._x;
+    }
+
+    set x(value) {
+        if (value < 0) 
+            throw new Error("fck you");
+        this._x = value;
+    }
+
 }
 
 
 let point = new MyPoint(1, 2);
 
+point.x = 5;
 point.draw();
